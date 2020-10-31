@@ -19,6 +19,19 @@ import name.ank.lab4.Keys;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     BibDatabase database;
 
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView title;
+        TextView Author;
+        TextView JournalAndYear;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.title);
+            Author = itemView.findViewById(R.id.author);
+            JournalAndYear = itemView.findViewById(R.id.JournalAndYear);
+        }
+    }
+
     Adapter(InputStream articles) throws IOException {
         InputStreamReader reader = new InputStreamReader(articles);
         database = new BibDatabase(reader);
@@ -43,18 +56,5 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return Integer.MAX_VALUE;
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView Author;
-        TextView JournalAndYear;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.title);
-            Author = itemView.findViewById(R.id.author);
-            JournalAndYear = itemView.findViewById(R.id.JournalAndYear);
-        }
     }
 }
